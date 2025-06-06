@@ -1,0 +1,197 @@
+/*Con esto mejoro la presentacion del formulario final, para que se vea mejor presentado*/
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background: white;
+  padding: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  font-family: inherit;
+  font-size: 1em;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type="submit"] {
+  width: fit-content;
+  padding: 0.5em 1.5em;
+  align-self: flex-end;
+}
+
+
+
+
+
+/*Con usar variables en este atributo root puedo utilizar dichas variables a lo largo 
+de todo el documento*/
+
+:root {
+  --fondo-general: #f0f0f0;/* este sera el color de fondo base*/
+  --color-texto: #333;/* con esto le pongo el color  al texto principal*/
+  --color-destacado: #ffd700;/* con este color se destaca elementos especiales*/
+}
+
+
+/*Con esto defino el estilo del cuerpo de la pagina*/
+body {
+  background-color: var(--fondo-general);/*Aca digo que debo usar el fondo que crie arriba*/
+  font-family: Arial, sans-serif;/*Con esto digo que tipo de letra o estilo quiero usar en el doc */
+  color: var(--color-texto);/*aplico el color del texto*/
+  /*Con estos 2 elimino los margenes y rellenos del navegador */
+  margin: 0;
+  padding: 0;
+}
+
+/* Selectores simples */
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 1em;
+  text-align: center;
+}
+
+
+/*Aca defino el menu de navegacion de la pagina */
+.menu ul {
+    /*Me ayuda a mostrar la lista pero de forma horizontal*/
+  display: flex;
+  /*Aca elimino los estilos definidos de la lista como los margenes y ek padding*/
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+  background-color: #444;
+  margin: 0;
+}
+
+.menu li {
+  margin: 0 1em;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+}
+
+/*Con esta clase defino que el titulo este centrado por default */
+.titulo {
+  text-align: center;
+}
+
+
+
+/* Selectores compuestos y operadores */
+
+main > section {
+  padding: 2em;
+}
+
+#proyectos .proyecto {
+  border: 1px solid #ccc;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.proyecto + .proyecto {
+  background-color: #e8f0fe;
+}
+
+.proyecto ~ .proyecto {
+  font-style: italic;
+}
+
+.proyecto.destacado {
+  background-color: var(--color-destacado);
+}
+
+
+
+/*
+Aca es donde genero los conflictos de especifidad 
+*/
+
+/*especificidad baja*/
+articulo{
+  color: blue;
+}
+/*especificidad un poco mayor xq tengo una clase definida*/
+articulo.proyecto {
+  color: green;
+}
+/*especificidad  mayor xq tengo un ID , clase Y TIPO definida*/
+
+#proyectos articulo.proyecto.destacado {
+  color: red;
+}
+
+
+/* Conflicto intencional - cascada */
+.texto {
+  font-size: 16px;
+}
+.texto {
+  font-size: 20px;
+}
+
+/* Selectores de atributos */
+[type="text"], [type="email"] {
+  border: 1px solid #999;
+  padding: .5em;
+  width: 100%;
+}
+
+[type="submit"] {
+  background-color: dodgerblue;
+  color: white;
+  padding: .75em;
+  border: none;
+  cursor: pointer;
+}
+
+[href^="https"] {
+  font-weight: bold;
+}
+
+
+/* Footer */
+/*
+
+Al definir el siguiente pie de pagina 
+Le establezco el fondo oscuro
+le pongo la letras en blanco 
+separo este del contenido anterior
+centro y le doy uns espacio definido 
+
+*/
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1em;
+  margin-top: 2em;
+}
+
+/* Comentarios:
+   - El color de los <articculo> cambia por especificidad.
+   - La clase .texto se sobrescribe por cascada.
+   - Se aplica herencia desde body a hijos.
+*/
